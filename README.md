@@ -1,8 +1,38 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Dependencies
+
+-   [Pocketbase](https://pocketbase.io/) - A database that is easy to use and deploy.
+-   [Next.js](https://nextjs.org/) - A React framework for building server-side rendered and static web applications.
+-   [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+-   [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom user interfaces.
+-   [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain JavaScript.
+-   [ESLint](https://eslint.org/) - A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript.
+-   [Prettier](https://prettier.io/) - An opinionated code formatter.
+
 ## Getting Started
 
-First, run the development server:
+First clone the repo:
+
+```bash
+git clone https://github.com/NWZX/NWZX_13_16102023
+# or
+gh repo clone NWZX/NWZX_13_16102023
+```
+
+Then install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Finally, run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +44,14 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+And, start the database:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pocketbase serve
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the **User chat** part of the project.
 
-## Learn More
+Open [http://localhost:3000/admin](http://localhost:3000/admin) with your browser to see the **Admin chat** part of the project.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Open [http://localhost:8090/\_/](http://localhost:8090/_/) with your browser to see the **Pocketbase Admin UI** _(demo@admin.com/0123456789)_
