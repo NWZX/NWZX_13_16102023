@@ -16,7 +16,8 @@ export default function ChatBubble({ userId }: ChatBubbleProps) {
 
     return (
         <button
-            className="absolute bottom-0 right-0 rounded-full bg-gray-100 p-5 hover:bg-gray-200/50 transition-colors"
+            className="absolute z-10 bottom-0 right-0 rounded-full bg-gray-100 p-5 hover:bg-gray-200/50 transition-colors"
+            type="button"
             onClick={() => setChatBubbleToggle(true)}
         >
             <Image width={48} height={48} src="/images/chat.png" alt="Chat" />

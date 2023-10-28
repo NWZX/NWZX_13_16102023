@@ -40,7 +40,7 @@ export default function ChatFloatCard({}: ChatBubbleProps) {
             id="floating-chat-card"
             className={`${
                 chatBubbleToggle ? 'flex' : 'hidden'
-            } absolute bottom-[75px] right-[75px]`}
+            } absolute z-20 bottom-[75px] right-[75px]`}
         >
             <div className="flex flex-col w-full h-full rounded-xl bg-white dark:bg-zinc-800/50">
                 <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-neutral-800">

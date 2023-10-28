@@ -1,8 +1,9 @@
-import PocketBase from 'pocketbase';
-import { ISupportChat } from '@/interfaces/IUser';
-import { CustomButton } from './CustomButton';
+'use client';
 
-export const revalidate = 20;
+import PocketBase from 'pocketbase';
+import { ESupportChatMessageStatus, ISupportChat } from '@/interfaces/IUser';
+import { CustomButton } from './CustomButton';
+import { useEffect, useState } from 'react';
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
@@ -15,9 +16,38 @@ async function getSupportChats() {
         });
     return result.items;
 }
+async function subscribeSupportChats(callback: Function) {
+    pb.collection<ISupportChat>('support_chat').subscribe('*', (e) => {
+        if (e.action == 'delete' || e.action == 'update') return;
+        callback(e.record);
+    });
+}
+async function unsubscribeSupportChats() {
+    pb.collection<ISupportChat>('support_chat').unsubscribe('*');
+}
 
-export default async function SupportChatList() {
-    const supportChats = await getSupportChats();
+export default function SupportChatList() {
+    const [supportChats, setSupportChats] = useState<ISupportChat[]>([]);
+    useEffect(() => {
+        (async () => {
+            try {
+                const result = await getSupportChats();
+                setSupportChats(result);
+            } catch (e) {}
+        })();
+    }, []);
+    useEffect(() => {
+        (async () => {
+            subscribeSupportChats(
+                (e: ISupportChat) =>
+                    e.status == ESupportChatMessageStatus.NEW &&
+                    setSupportChats([...supportChats, e])
+            );
+        })();
+        return () => {
+            unsubscribeSupportChats();
+        };
+    }, [supportChats]);
 
     return (
         <div className="flex flex-col">

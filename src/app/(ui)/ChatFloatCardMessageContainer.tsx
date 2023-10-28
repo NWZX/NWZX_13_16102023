@@ -22,6 +22,7 @@ async function subscribeMessages(sessionId: string, callback: Function) {
     pb.collection<ISupportChatMessage>('support_chat_message').subscribe(
         '*',
         (e) => {
+            if (e.action == 'delete' || e.action == 'update') return;
             e.record.support_chat_id == sessionId && callback(e.record);
         }
     );
